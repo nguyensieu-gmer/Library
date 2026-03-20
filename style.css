@@ -46,3 +46,35 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+:root {
+  /* Màu nền trang */
+  --color-background: #f5f2ed;   /* giấy cũ, beige nhẹ */
+  --color-container: #efe8db;    /* container nhạt hơn nền để tạo chiều sâu */
+
+  /* Màu chữ */
+  --color-text-main: #3b2f2f;    /* nâu sẫm, dễ đọc */
+  --color-text-secondary: #5c4a3d; /* nâu nhạt hơn cho subtitle / caption */
+  --color-text-accent: #7c5e3c;  /* nâu đỏ ấm để nhấn nhá link / highlight */
+
+  /* Màu nút / link / accent */
+  --color-accent: #b77e4b;       /* nâu vàng ấm, tạo điểm nhấn */
+  --color-accent-hover: #d1670b; /* hover đậm hơn */
+
+  /* Border, divider */
+  --color-border: #d4c3b0;       /* nâu nhạt / sepia */
+
+  --body-font: "Montserrat", sans-serif;
+  --second-font: "Dancing Script", cursive;
+  --biggest-font-size: 3rem;
+  --bigger-font-size: 2rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+}
