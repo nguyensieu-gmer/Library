@@ -13,8 +13,37 @@
 </head>
 <body>
     <div class="header">
-        <h1>Library</h1>
-        <button>login</button>
+        <h1>📓Library</h1>
+        <button><i class="ri-user-3-fill"></i> login</button>
+    </div>
+    <div class="library">
+        <div class="adder">
+            <button id="add_book"><i class="ri-add-large-fill"></i> Add book</button>
+
+            <dialog id="add_dialog">
+                <form method="dialog">
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" maxlength="50">
+                    </div>
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" name="author" id="author" maxlength="50">
+                    </div>
+                    <div>
+                        <label for="pages">Pages</label>
+                        <input type="number" name="pages" id="pages" max="2000">
+                    </div>
+                    <div>
+                        <button formmethod="dialog" type="submit">Cancel</button>
+                        <button type="submit">Add</button>
+                    </div>
+                </form>
+            </dialog>
+        </div>
+        <div class="books">
+
+        </div>
     </div>
 </body>
 </html>

@@ -20,7 +20,9 @@
 
 body {
   line-height: 1.5;
+  font-family: var(--body-font);
   -webkit-font-smoothing: antialiased;
+  background-color: var(--color-background);
 }
 
 img, picture, video, canvas, svg {
@@ -49,20 +51,20 @@ h1, h2, h3, h4, h5, h6 {
 
 :root {
   /* Màu nền trang */
-  --color-background: #f5f2ed;   /* giấy cũ, beige nhẹ */
-  --color-container: #efe8db;    /* container nhạt hơn nền để tạo chiều sâu */
+  --color-background: #fafafa;   /* giấy cũ, beige nhẹ */
+  --color-container: #e1e1e1;    /* container nhạt hơn nền để tạo chiều sâu */
 
   /* Màu chữ */
-  --color-text-main: #3b2f2f;    /* nâu sẫm, dễ đọc */
-  --color-text-secondary: #5c4a3d; /* nâu nhạt hơn cho subtitle / caption */
-  --color-text-accent: #7c5e3c;  /* nâu đỏ ấm để nhấn nhá link / highlight */
+  --color-text-main: #000000;    /* nâu sẫm, dễ đọc */
+  --color-text-secondary: #5e5e5e; /* nâu nhạt hơn cho subtitle / caption */
+  --color-text-accent: #dfdfdf;  /* nâu đỏ ấm để nhấn nhá link / highlight */
 
   /* Màu nút / link / accent */
-  --color-accent: #b77e4b;       /* nâu vàng ấm, tạo điểm nhấn */
-  --color-accent-hover: #d1670b; /* hover đậm hơn */
+  --color-accent: #4a86a4;       /* nâu vàng ấm, tạo điểm nhấn */
+  --color-accent-hover: #99c6dc; /* hover đậm hơn */
 
   /* Border, divider */
-  --color-border: #d4c3b0;       /* nâu nhạt / sepia */
+  --color-border: #616ac0;       /* nâu nhạt / sepia */
 
   --body-font: "Montserrat", sans-serif;
   --second-font: "Dancing Script", cursive;
@@ -78,3 +80,43 @@ h1, h2, h3, h4, h5, h6 {
   --font-semi-bold: 600;
   --font-bold: 700;
 }
+
+/* header */
+
+.header{
+    display: flex;
+    height: 5rem;
+    background-color: var(--color-container);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5rem;
+}
+
+button{
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: var(--color-accent);
+    font-weight: var(--font-semi-bold);
+    font-size: var(--h1-font-size);
+    padding: .3rem 1rem;
+    transition: 0.3s ease;
+    box-shadow: 1px 1px 5px 2px rgb(168, 167, 167);
+}
+
+button:hover{
+    background-color: var(--color-accent-hover);
+    color: var(--color-text-main);
+}
+
+.adder{
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* library */
+
+/* dialog */
+
