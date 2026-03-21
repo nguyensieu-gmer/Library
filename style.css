@@ -120,3 +120,84 @@ button:hover{
 
 /* dialog */
 
+.adder dialog{
+    border: none;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.adder dialog::backdrop{
+    background: rgba(218, 234, 238, 0.5);
+}
+
+.adder dialog form{
+    width: 15rem;
+    height: auto;
+}
+
+.adder dialog form label,
+.adder dialog form input{
+    display: block;
+}
+
+.status{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.status label{
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-regular);
+}
+
+.library dialog .status input{
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--color-accent);
+}
+
+.adder dialog form label{
+    font-weight: var(--font-semi-bold);
+    font-size: var(--h2-font-size);
+}
+
+.adder dialog form input{
+    width: 100%;
+    height: 2rem;
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-regular);
+    outline: none;
+    border: 2px solid var(--color-accent);
+    border-radius: 4px;
+}
+
+.adder dialog form div:last-child{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.adder dialog form div:last-child button{
+    flex: 1;
+}
+
+.adder dialog form div:last-child button[formmethod="dialog"]{
+    background-color: #b76262;
+}
+
+.adder dialog form div:last-child button[formmethod="dialog"]:hover{
+    background-color: #da9898;
+}
+
+.adder dialog form input:user-invalid{
+    border: 2px solid red;
+}
+
+.adder dialog form div:not(div:last-child){
+    margin-bottom: 1rem;
+}
+

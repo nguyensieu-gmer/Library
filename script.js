@@ -1,8 +1,20 @@
-const BtnaddBook = document.getElementById("add_book");
-const Dialogadd = document.getElementById("add_dialog");
+const btnaddBook = document.getElementById("add_book");
+const dialogadd = document.getElementById("add_dialog");
 
-BtnaddBook.addEventListener("click", (e) => {
+btnaddBook.addEventListener("click", (e) => {
     e.preventDefault();
 
-    Dialogadd.showModal();
+    dialogadd.showModal();
 });
+
+dialogadd.addEventListener("click", e => {
+  const dialogDimensions = dialogadd.getBoundingClientRect()
+  if (
+    e.clientX < dialogDimensions.left ||
+    e.clientX > dialogDimensions.right ||
+    e.clientY < dialogDimensions.top ||
+    e.clientY > dialogDimensions.bottom
+  ) {
+    dialogadd.close()
+  }
+})

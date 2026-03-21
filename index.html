@@ -32,7 +32,11 @@
                     </div>
                     <div>
                         <label for="pages">Pages</label>
-                        <input type="number" name="pages" id="pages" max="2000">
+                        <input type="number" name="pages" id="pages" min="1" max="2000">
+                    </div>
+                    <div class="status">
+                        <label for="read">Have you read it?</label>
+                        <input type="checkbox" name="read" id="read">
                     </div>
                     <div>
                         <button formmethod="dialog" type="submit">Cancel</button>
@@ -42,7 +46,10 @@
             </dialog>
         </div>
         <div class="books">
-
+            <div>
+                <h1>title</h1>
+                <h2 class="author"></h2>
+            </div>
         </div>
     </div>
 </body>
