@@ -90,6 +90,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
     align-items: center;
     padding: 0 5rem;
+    margin-bottom: 1rem;
 }
 
 button{
@@ -204,7 +205,7 @@ button:hover{
 /* books */
 
 .books{
-    width: 100vw;
+    width: 100%;
     padding-top: 3rem;
     display: grid;
     grid-template-columns: repeat(3, 20rem);
@@ -212,7 +213,7 @@ button:hover{
     gap: 3rem;
 }
 
-.books div{
+.books .book_style{
     display: flex;
     flex-direction: column;
     padding: 2rem;
@@ -221,4 +222,19 @@ button:hover{
     border: 2px solid var(--color-accent);
     border-radius: 6px;
     box-shadow: -11px -10px 0px var(--color-accent-hover);
+}
+
+/* footer */
+
+.footer{
+    display: flex;
+    height: 3rem;
+    width: 100%;
+    background-color: var(--color-border);
+    margin-top: 8rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: var(--font-bold);
+    font-size: var(--h1-font-size);
+    color: white;
 }
