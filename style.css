@@ -224,6 +224,14 @@ button:hover{
     box-shadow: -11px -10px 0px var(--color-accent-hover);
 }
 
+.books .book_style button.not_read{
+    background-color: rgb(228, 106, 93);
+}
+
+.books .book_style button.not_read:hover{
+    background-color: rgb(244, 175, 167);
+}
+
 /* footer */
 
 .footer{
