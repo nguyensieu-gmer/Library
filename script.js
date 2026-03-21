@@ -13,6 +13,20 @@ books.addEventListener("click", (e) => {
         myLibrary = myLibrary.filter(book => book.id !== id);
         displayBooks();
     }
+    if (e.target.classList.contains("read_status")){
+        let id = e.target.parentNode.dataset.id;
+        
+        let removeEle = myLibrary.find(book => book.id === id);
+
+        removeEle.switchStatus();
+        if (removeEle.read){
+            e.target.classList.remove("not_read");
+            e.target.textContent = "read";
+        } else {
+            e.target.classList.add("not_read");
+            e.target.textContent = "not read";
+        }
+    }
 });
 
 function Book(title, author, pages, read) {
@@ -53,6 +67,7 @@ function displayBooks(){
         div.append(h3Pages);
 
         let statusBtn = document.createElement("button");
+        statusBtn.classList.add("read_status")
         if (!book.read){
             statusBtn.classList.add("not_read");
             statusBtn.textContent = "not read";
@@ -108,8 +123,3 @@ form.addEventListener("submit", (e) => {
 
     dialogadd.close();
 })
-
-// craft
-// addBookToLibrary("a", "b", 12, false)
-// console.log(myLibrary)
-// displayBooks();
