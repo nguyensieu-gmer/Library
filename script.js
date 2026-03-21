@@ -3,10 +3,18 @@ const dialogadd = document.getElementById("add_dialog");
 const books = document.querySelector(".books");
 const form = dialogadd.querySelector("form");
 
-const myLibrary = [];
-
+let myLibrary = [];
 
 // book
+books.addEventListener("click", (e) => {
+    if (e.target.classList.contains("remove")){
+        let id = e.target.parentNode.dataset.id;
+        
+        myLibrary = myLibrary.filter(book => book.id !== id);
+        displayBooks();
+    }
+});
+
 function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
     this.title = title;
@@ -25,33 +33,37 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks(){
+    books.innerHTML = "";
+
     for (let book of myLibrary){
         let div = document.createElement("div");
         div.classList.add("book_style");
+        div.setAttribute("data-id", book.id);
 
-        let h1Title = document.createElement("h1");
-        h1Title.textContent = book.title;
-        div.appendChild(h1Title);
+        let h2Title = document.createElement("h2");
+        h2Title.textContent = book.title;
+        div.appendChild(h2Title);
 
-        let h2Author = document.createElement("h2");
-        h2Author.textContent = book.author;
-        div.appendChild(h2Author);
+        let h3Author = document.createElement("h3");
+        h3Author.textContent = book.author;
+        div.appendChild(h3Author);
 
-        let h2Pages = document.createElement("h2");
-        h2Pages.textContent = book.pages + '';
-        div.append(h2Pages);
+        let h3Pages = document.createElement("h3");
+        h3Pages.textContent = book.pages + '';
+        div.append(h3Pages);
 
         let statusBtn = document.createElement("button");
         if (!book.read){
             statusBtn.classList.add("not_read");
-            statusBtn.textContent = "Not read";
+            statusBtn.textContent = "not read";
         } else {
-            statusBtn.textContent = "Read";
+            statusBtn.textContent = "read";
         }
         div.appendChild(statusBtn);
 
         let removeBtn = document.createElement("button");
-        removeBtn.textContent = "Remove";
+        removeBtn.classList.add("remove");
+        removeBtn.textContent = "remove";
         div.appendChild(removeBtn);
 
         books.appendChild(div);
@@ -92,7 +104,6 @@ form.addEventListener("submit", (e) => {
 
     addBookToLibrary(title, author, pages, read);
 
-    books.innerHTML = "";
     displayBooks();
 
     dialogadd.close();
