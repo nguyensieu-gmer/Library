@@ -47,7 +47,7 @@ function screenControler(){
         }
     }
 
-    // screen controler books remove button
+    // screen controler books 
     books.addEventListener("click", booksListener);
 
     function displayBooks(){
@@ -116,10 +116,10 @@ function screenControler(){
 
         e.preventDefault();
 
-        let title = document.getElementById("title").value;
-        let author = document.getElementById("author").value;
-        let pages = document.getElementById("pages").value;
-        let read =  document.getElementById("read").checked;
+        let title = !document.getElementById("title").value ? "No title" : document.getElementById("title").value;
+        let author = !document.getElementById("author").value ? "No author" : document.getElementById("author").value;
+        let pages = !document.getElementById("pages").value ? "0" : document.getElementById("pages").value;
+        let read =  !document.getElementById("read").checked;
 
         addBookToLibrary(title, author, pages, read); // addBookToLibrary will myLibraby class function
 
