@@ -108,7 +108,7 @@ function screenControler(){
     }
     })
 
-    form.addEventListener("submit", (e) => {
+    function formEventListener(e){
         let submitter = e.submitter;
         if (submitter.value === "cancel"){
             return;
@@ -126,7 +126,9 @@ function screenControler(){
         displayBooks();
 
         dialogadd.close();
-    })
+    }
+
+    form.addEventListener("submit", formEventListener);
 }
 
 screenControler();
