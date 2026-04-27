@@ -25,7 +25,7 @@ class Library {
   }
 
   getBook(id) {
-    return this.books.filter((book) => book.id === id);
+    return this.books.find((book) => book.id === id);
   }
 }
 
@@ -120,7 +120,7 @@ class AppController {
 
     if (read_status) {
       const id = read_status.closest(".book_style").dataset.id;
-      const book = this.library.getBook(id);
+      let book = this.library.getBook(id);
       book.switchStatus(); // bug
       this.view.render(this.library.books);
       return;
