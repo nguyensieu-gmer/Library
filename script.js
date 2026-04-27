@@ -77,7 +77,7 @@ class viewLibrary {
 
     let h3Pages = document.createElement("h3");
     h3Pages.textContent = book.pages + "";
-    div.append(h3Pages);
+    div.appendChild(h3Pages);
 
     let statusBtn = document.createElement("button");
     statusBtn.classList.add("read_status");
@@ -116,6 +116,8 @@ class AppController {
     this.form = document.querySelector("#add_dialog form");
     this.dialog = document.getElementById("add_dialog");
     this.addBtn = document.getElementById("add_book");
+    this.validText = new ValidateText();
+    this.validNumber = new ValidateNumber();
 
     this.init();
   }
@@ -141,6 +143,10 @@ class AppController {
     this.booksElement.addEventListener("click", (e) =>
       this.handleClickEvent(e),
     );
+
+    this.validText.bindEvent(document.getElementById("title"));
+    this.validText.bindEvent(document.getElementById("author"));
+    this.validNumber.bindEvent(document.getElementById("pages"));
   }
 
   handleAddBook(e) {
@@ -183,6 +189,57 @@ class AppController {
       this.renderLibrary();
       return;
     }
+  }
+}
+
+class ValidateText {
+  constructor() {}
+
+  bindEvent(element) {
+    element.addEventListener("input", (e) => {
+      element.setCustomValidity("");
+      if (element.validity.tooShort) {
+        element.setCustomValidity(
+          `the ${element.name} must more than ${element.minLength} character, you only ${element.value.length}`,
+        );
+      } else if (element.validity.tooLong) {
+        element.setCustomValidity(
+          `the ${element.name} must less than ${element.maxLength} character, you only ${element.value.length}`,
+        );
+      } else if (element.validity.valueMissing) {
+        element.setCustomValidity(
+          `please enter the ${element.name} of the book`,
+        );
+      } else {
+        element.setCustomValidity("");
+      }
+
+      element.reportValidity();
+    });
+  }
+}
+
+class ValidateNumber {
+  constructor() {}
+  bindEvent(element) {
+    element.addEventListener("input", (e) => {
+      element.setCustomValidity("");
+      if (element.validity.valueMissing) {
+        element.setCustomValidity("you need to enter pages of book");
+      } else if (element.validity.rangeOverflow) {
+        element.setCustomValidity(
+          `Your ${element.name} now is ${element.value} it will be less than ${element.max}`,
+        );
+      } else if (element.validity.rangeUnderflow) {
+        element.setCustomValidity(
+          `Your ${element.name} now is ${element.value} it will be more than ${element.min}`,
+        );
+      } else {
+        element.setCustomValidity("");
+      }
+
+      element.reportValidity();
+    });
   }
 }
 
