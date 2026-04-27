@@ -1,6 +1,6 @@
 class Book {
-  constructor(title, author, pages, read) {
-    this.id = crypto.randomUUID();
+  constructor(id, title, author, pages, read) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -8,6 +8,16 @@ class Book {
   }
   switchStatus() {
     this.read = !this.read;
+  }
+
+  getBookObject() {
+    return {
+      id: this.id,
+      title: this.title,
+      author: this.author,
+      pages: this.pages,
+      read: this.read,
+    };
   }
 }
 
@@ -26,6 +36,24 @@ class Library {
 
   getBook(id) {
     return this.books.find((book) => book.id === id);
+  }
+
+  getLibrary() {
+    return this.books.map((book) => book.getBookObject());
+  }
+
+  setLibrary(books) {
+    this.books = [];
+    books.forEach((item) => {
+      const book = new Book(
+        item.id,
+        item.title,
+        item.author,
+        item.pages,
+        item.read,
+      );
+      this.books.push(book);
+    });
   }
 }
 
@@ -80,6 +108,7 @@ class viewLibrary {
 class AppController {
   constructor() {
     this.library = new Library();
+    this.localStorageKey = "library";
 
     this.booksElement = document.querySelector(".books");
     this.view = new viewLibrary(this.booksElement);
@@ -90,7 +119,23 @@ class AppController {
 
     this.init();
   }
+
+  renderLibrary() {
+    const data = JSON.parse(localStorage.getItem(this.localStorageKey)) || []; // null || []
+    this.library.setLibrary(data);
+    this.view.render(this.library.books);
+  }
+
+  save() {
+    localStorage.setItem(
+      this.localStorageKey,
+      JSON.stringify(this.library.getLibrary()),
+    );
+  }
+
   init() {
+    this.renderLibrary();
+
     this.addBtn.addEventListener("click", (e) => this.dialog.showModal());
     this.form.addEventListener("submit", (e) => this.handleAddBook(e));
     this.booksElement.addEventListener("click", (e) =>
@@ -105,11 +150,13 @@ class AppController {
     const author = this.form.elements["author"].value.trim() || "No author";
     const pages = this.form.elements["pages"].value.trim() || "0";
     const read = this.form.elements["read"].checked;
+    const id = crypto.randomUUID();
 
-    const book = new Book(title, author, pages, read);
+    const book = new Book(id, title, author, pages, read);
     this.library.addBook(book);
 
-    this.view.render(this.library.books);
+    this.save();
+    this.renderLibrary();
     this.dialog.close();
     this.form.reset();
   }
@@ -121,15 +168,19 @@ class AppController {
     if (read_status) {
       const id = read_status.closest(".book_style").dataset.id;
       let book = this.library.getBook(id);
-      book.switchStatus(); // bug
-      this.view.render(this.library.books);
+      book.switchStatus();
+
+      this.save();
+      this.renderLibrary();
       return;
     }
 
     if (remove) {
       const id = remove.closest(".book_style").dataset.id;
       this.library.removeBook(id);
-      this.view.render(this.library.books);
+
+      this.save();
+      this.renderLibrary();
       return;
     }
   }
