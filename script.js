@@ -92,12 +92,13 @@ class AppController {
   }
   init() {
     this.addBtn.addEventListener("click", (e) => this.dialog.showModal());
-    this.form.addEventListener("submit", (e) => this.handleAddBook);
-    this.booksElement.addEventListener("click", (e) => this.handleClickEvent);
+    this.form.addEventListener("submit", (e) => this.handleAddBook(e));
+    this.booksElement.addEventListener("click", (e) =>
+      this.handleClickEvent(e),
+    );
   }
 
-  handleAddBook() {
-    e.preventDefault();
+  handleAddBook(e) {
     if (e.submitter.value === "cancel") return;
 
     const title = this.form.elements["title"].value.trim() || "No title";
@@ -106,27 +107,27 @@ class AppController {
     const read = this.form.elements["read"].checked;
 
     const book = new Book(title, author, pages, read);
-
     this.library.addBook(book);
+
     this.view.render(this.library.books);
     this.dialog.close();
     this.form.reset();
   }
 
-  handleClickEvent() {
+  handleClickEvent(e) {
     const read_status = e.target.closest(".read_status");
     const remove = e.target.closest(".remove");
 
     if (read_status) {
       const id = read_status.closest(".book_style").dataset.id;
       const book = this.library.getBook(id);
-      book.switchStatus();
+      book.switchStatus(); // bug
       this.view.render(this.library.books);
       return;
     }
 
     if (remove) {
-      const id = read_status.closest(".book_style").dataset.id;
+      const id = remove.closest(".book_style").dataset.id;
       this.library.removeBook(id);
       this.view.render(this.library.books);
       return;
